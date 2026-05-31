@@ -1,0 +1,34 @@
+name: Demo Pipeline
+on:
+  push:
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Dev Stage
+      run: |
+        echo "Hi Dev Stage"
+        echo "Build Completed"
+
+  test:
+    needs: dev
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test Stage
+        run: |
+          echo "Running Tests"
+          echo "Tests Passed"
+
+  prod:
+   needs: test
+   runs-on: ubuntu-latest
+
+   steps:
+     - name: Prod Stage
+       run: |
+          echo "Deploying to production"
+          echo "Deployment Successfull !"
+  
